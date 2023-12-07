@@ -1,0 +1,54 @@
+
+
+<header class="p-3 text-bg-dark">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        {% load static %}
+        <img width="80" src="/media/post/images/logoott.jpg">
+<!--        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">-->
+<!--          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>-->
+<!--        </a>-->
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          {% if request.user.is_authenticated %}
+          {% if is_content_creators %}
+          <li><a href="{% url 'creatorposts' %}" class="nav-link px-2 text-white">Home</a></li>
+          {% endif %}
+          {% if is_subscriber %}
+            <li><a href="{% url 'subscriber_list' %}" class="nav-link px-2 text-white">Home</a></li>
+            <li><a href="#movies" class="nav-link px-2 text-white">Movies</a></li>
+            <li><a href="#tvshow" class="nav-link px-2 text-white">TV Shows</a></li>
+            <li><a href="#series" class="nav-link px-2 text-white">Series</a></li>
+            <li><a href="{% url 'favorite_list' %}" class="nav-link px-2 text-white">Favourites</a></li>
+            <li><a href="{% url 'watch_history' %}" class="nav-link px-2 text-white">Watch History</a></li>
+
+          {% endif %}
+          {% if request.user.is_superuser %}
+            <li><a href="{% url 'adminpage' %}" class="nav-link px-2 text-white">Home</a></li>
+            <li><a href="{% url 'registercreator' %}" class="nav-link px-2 text-white">Add Content Creator</a></li>
+
+          {% endif %}
+          {% if is_content_creators %}
+            <li><a href="{% url 'add_post' %}" class="nav-link px-2 text-white">Add Content</a></li>
+            <li><a href="{% url 'creator' %}" class="nav-link px-2 text-white">Library</a></li>
+          {% endif %}
+          {% if request.user.is_superuser %}
+            <li><a class="text-white nav-link" href="{% url 'user_list' %}">Manage users</a> </li>
+            <li><a href="{% url 'subscriber_list' %}" class="nav-link px-2 text-white">Library</a></li>
+          {% endif %}
+          {% if request.user.is_authenticated %}
+          <li><a class="text-white nav-link" href="{% url 'logout' %}">Logout</a></li>
+          {% endif %}
+          {% endif %}
+        </ul>
+        {% if request.user.is_authenticated %}
+        <form class="d-flex" action=" " role="search">
+          <input name="searchpost" type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
+            <button type="submit" class="btn btn-outline-light me-2">Search</button>
+        </form>
+
+              <a href="" class="nav-link px-2 text-white">Welcome, {{ request.user.username }}</a>
+        {% endif %}
+      </div>
+    </div>
+  </header>

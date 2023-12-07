@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+<style>
+    .background-container {
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        background-color: rgba(0, 0, 0, 0.2);
+        height: 700px; /* Adjust the height as needed */
+        text-align: center;
+        padding: 10px;
+        transition: background-image 1s ease-in-out;
+    }
+
+    .main-content{
+        font-family: Algerian;
+    }
+</style>
+
+<div class="background-container" id="background-container">
+<!--    <img width="330" src="/media/post/images/logoott.jpg" alt="Logo" class="logo">-->
+<!--    <a href="register" class="btn btn-danger top-right-button">Sign Up</a>-->
+    <div class="container main-content text-warning"><br><br><br><br><br><br><br><br>
+        <h1>Welcome to ENTERTAINIX <br>CONTENT CREATOR</h1><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+    </div>
+
+</div>
+
+<!-- Include Bootstrap JS and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    // JavaScript code to change the background image every 2 seconds
+    const backgroundContainer = document.getElementById("background-container");
+    const images = [
+        '/media/post/images/director1.jpg',
+        '/media/post/images/director2.jpg',
+        '/media/post/images/director3.jpg',
+        '/media/post/images/director4.jpg'
+    ];
+    let currentImageIndex = 0;
+
+    function changeBackgroundImage() {
+        backgroundContainer.style.backgroundImage = `url('${images[currentImageIndex]}')`;
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+    }
+
+    // Change the background image every 2 seconds
+    setInterval(changeBackgroundImage, 3000);
+</script>
+{% endblock %}
+
+

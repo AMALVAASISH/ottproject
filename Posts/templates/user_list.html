@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+<div class="container mt-4">
+    <h3 class="mb-4">Content Creators</h3>
+    <div class="row">
+        {% for user in content_creators %}
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-title"><strong>Username:</strong> {{ user.username }}</p>
+                    <p class="card-text"><strong>Email:</strong> {{ user.email }}</p>
+                    <p class="card-text"><strong>Status:</strong> {{ user.is_active }}</p>
+                    <div>
+                        {% if not user.is_superuser and user != request.user %}
+                            <a href="{% url 'toggle_user_status' user.id %}" class="btn btn-primary btn-sm">Toggle Status</a>
+                        {% else %}
+                            <span class="badge badge-secondary">Not Allowed</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h3 class="mt-5 mb-4">Subscribers</h3>
+    <div class="row">
+        {% for user in subscribers %}
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ user.username }}</h5>
+                    <p class="card-text"><strong>Email:</strong> {{ user.email }}</p>
+                    <p class="card-text"><strong>Status:</strong> {{ user.is_active }}</p>
+                    <div>
+                        {% if not user.is_superuser and user != request.user %}
+                            <a href="{% url 'toggle_user_status' user.id %}" class="btn btn-primary btn-sm">Toggle Status</a>
+                        {% else %}
+                            <span class="badge badge-secondary">Not Allowed</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

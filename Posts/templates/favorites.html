@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Favorites{% endblock %}
+
+{% block body %}
+<style>
+    .custom-embed {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio, adjust as needed */
+        height: 0;
+        overflow: hidden;
+    }
+
+    .custom-embed iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+</style>
+<div class="container mt-3">
+    <h1>Your Favorite Posts</h1>
+    {% if favorites %}
+        <ul>
+            {% for post in favorites %}
+                <li>
+                    <h2>{{ post.title }}</h2>
+                    <div class="custom-embed">
+                        <iframe src="{{ post.video_url }}" allowfullscreen></iframe>
+                    </div>
+                    <p>Duration: {{ post.duration }} minutes</p>
+                    <p>Cast: {{ post.cast }}</p>
+                    <p>Genre: {{ post.movie_genre }}</p>
+                    <p>Category: {{ post.movie_media_genre }}</p>
+                    <p>Release Date: {{ post.published_date }}</p>
+                    <a href="{% url 'detail_path' post.id %}">
+                        <button type="button" class="btn btn-primary text-white">View Details</button>
+                    </a>
+                    <a href="{% url 'subscriber_list' %}" class="mx-5">
+                        <button type="button" class="btn btn-primary" >Go Back</button>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You have no favorite posts.</p>
+    {% endif %}
+</div>
+{% endblock %}

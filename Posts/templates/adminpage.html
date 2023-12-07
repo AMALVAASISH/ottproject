@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+  <!-- Hero Section -->
+  <section class="hero-section text-center " style="background-image: url('admin.jpg'); background-size: cover; background-position: center center; height: 40vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <h1 class="display-3 mb-1">Welcome to Entertainix Admin Panel</h1>
+    <p class="lead ">Your Gateway to Seamless Entertainment</p>
+  </section>
+
+  <!-- Features Section (Add more features here) -->
+  <section class="container my-1">
+    <h2 class="text-center mb-1">Key Features</h2>
+    <div class="row">
+      <div class="col-md-4 mb-1">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">User Management</h5>
+            <p class="card-text">Manage users and their subscriptions with ease.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Content Management</h5>
+            <p class="card-text">Upload, organize, and manage multimedia content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Analytics</h5>
+            <p class="card-text">Gain insights into user behavior and content popularity.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{%load crispy_forms_tags %}
+
+{% block title %} EPISODE EDITING {% endblock %}
+{% block body %}
+    <div class="container mt-3">
+      <h3>Please Edit Contents</h3>
+      <form action="" method="post" enctype="multipart/form-data" novalidate>
+
+        {% csrf_token %}
+        {{ edit_episode_form | crispy }}
+        <input type="submit" value="Edit Episode" class="btn btn-success">
+      </form>
+      {% if is_subscriber %}
+        <a href="{% url 'subscriber_list' %}">
+        <button type="button" class="btn btn-primary" >Go Back</button>
+        </a>
+      {% endif %}
+      {% if is_content_creators %}
+        <a href="{% url 'creator' %}">
+        <button type="button" class="btn btn-primary" >Go Back</button>
+        </a>
+      {% endif %}
+    </div>
+{% endblock %}

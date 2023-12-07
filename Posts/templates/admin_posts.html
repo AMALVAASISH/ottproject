@@ -1,0 +1,25 @@
+
+{% extends 'base.html' %}
+
+{% block body %}
+<div>
+<section align="center">
+    <h1 class="text-white" >Trending Now</h1>
+    <div class="box">
+        {% for movie in movies %}
+            <a href=""><img src="{{ movie.Image.url }}" alt=""></a>
+        {% endfor %}
+    </div>
+    <h1 class="text-white">Popular on Entertainix</h1>
+    <div class="location" >
+        <div class="box">
+            {% for show in series %}
+                <a href=""><img src="{{ show.Image.url }}" alt=""></a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Repeat similar code for TV shows, Blockbuster Action & Adventure, and Netflix Originals sections -->
+</section>
+</div>
+{% endblock %}

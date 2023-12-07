@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="container" style="background-color: rgb(0, 0, 0)">
+
+    <section align="center">
+        <h1 class="text-white"  id="myList">Trending Now</h1>
+        <div class="box">
+            <a href="http://127.0.0.1:8000/post/2/"><img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRqK3_nPn_8UHFtyOFgDtrx1d_DfmngcZ3qbTLHZq7vbIrrllSx" alt=""></a>
+            <a href="http://127.0.0.1:8000/post/11/"><img src="https://upload.wikimedia.org/wikipedia/en/4/4b/Loki_season_2_poster.jpg" alt=""></a>
+            <a href="http://127.0.0.1:8000/post/4/"><img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRcywLT8os8ZXJb7n3hmSzrSzpnLIDNgHeIufdEvCprHyuxThul" alt=""></a>
+            <a href="http://127.0.0.1:8000/post/3/"><img src="https://m.media-amazon.com/images/M/MV5BMzA1NjEwMjYtMTk4NS00YjllLWIzNTQtZDUyYjRiZWU5NzNkXkEyXkFqcGdeQXVyMTQ3Mzk2MDg4._V1_.jpg" alt=""></a>
+            <a href="http://127.0.0.1:8000/post/19/"><img src="https://upload.wikimedia.org/wikipedia/en/c/cf/Adipurush_poster.jpeg" alt=""></a>
+            <a href="http://127.0.0.1:8000/post/20/"><img src="https://www.indiaherald.com/Assets/ArticleUpload/2023710175938116_WhatsApp-Image-2023-07-10-at-5-49-20-PM.jpeg" alt=""></a>
+        </div>
+        <h1 class="text-white" id="originals">Upcoming on Entertainix</h1>
+        <marquee>
+        <div class="box">
+            <a href="https://www.youtube.com/embed/Po3jStA673E?si=C8h1MgiT2Mmb7Y5Y"><img src="https://static.moviecrow.com/gallery/20230921/221109-Leo%20Vijay%20Sanjay%20Dutt%20Poster.jpg" alt=""></a>
+            <a href=""><img src="https://upload.wikimedia.org/wikipedia/en/4/4f/Insidious_the_red_door.png" alt=""></a>
+            <a href=""><img src="https://preview.redd.it/jawan-2023-review-discussion-thread-spoilers-must-be-tagged-v0-l9k546qx0qhb1.jpg?width=1080&format=pjpg&auto=webp&s=9fdca28426c893a78cec349982d49a99eba6cd87" alt=""></a>
+            <a href=""><img src="https://www.nowrunning.com/content/movie/2023/chave-27155/Stills/chaver_2023911.jpg" alt=""></a>
+            <a href=""><img src="https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/miss-shetty-mr-polishetty-et00353997-1683119857.jpg" alt=""></a>
+            <a href=""><img src="https://m.media-amazon.com/images/M/MV5BNTMxZTQ1ZmEtOWM3Ny00MGQzLTgyMjgtZGMzNDM0YjVhZjMzXkEyXkFqcGdeQXVyMjkxNzQ1NDI@._V1_.jpg" alt=""></a>
+        </div><br><br>
+        </marquee>
+    </section>
+    <section align="center">
+        <h1 class="text-white" id="movies" >Movies</h1>
+        <div class="box" >
+            {% for movie in movies %}
+                    <a href="{% url 'home' %}post/{{ movie.id }}">
+                        <img src="{{ movie.Image.url }}" alt="" class="movie-image" data-movie-id="{{ movie.id }}">
+                    </a>
+            {% endfor %}
+        </div>
+        <h1 class="text-white" id="series">Series</h1>
+        <div class="location" >
+            <div class="box">
+                {% for show in series %}
+                    <a href="{% url 'home' %}post/{{ show.id }}"><img src="{{ show.Image.url }}" alt="" class="movie-image" data-movie-id="{{ show.id }}"></a>
+                {% endfor %}
+            </div>
+        </div>
+        <h1 class="text-white" id="tvshow" >TV shows</h1>
+        <div class="location" >
+            <div class="box">
+                {% for tv in tvshows %}
+                    <a href="{% url 'home' %}post/{{ tv.id }}"><img src="{{ tv.Image.url }}" alt="" class="movie-image" data-movie-id="{{ tv.id }}" ></a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Repeat similar code for TV shows, Blockbuster Action & Adventure, and Netflix Originals sections -->
+    </section>
+</div>
+
+<script>
+  // Get a reference to the icon element by its id
+  const iconElement = document.getElementById('notification-icon');
+
+  // Add a click event listener to the link
+  iconElement.addEventListener('click', function () {
+    // Toggle the class to change the icon
+    iconElement.classList.toggle('fa-bell'); // Change to your desired icon class
+    iconElement.classList.toggle('fa-bell-slash'); // Change to your desired icon class
+  });
+</script>
+<script>
+  // Get references to the search input and search icon
+  const searchInput = document.getElementById('search-input');
+  const searchIcon = document.getElementById('search-icon');
+
+  // Add a click event listener to the search icon
+  searchIcon.addEventListener('click', function () {
+    // Get the user's search query
+    const query = searchInput.value.trim().toLowerCase();
+
+    // Perform the movie search (replace this with your search logic)
+    if (query) {
+      // You can implement your search logic here
+      alert(`Searching for movies with query: "${query}"`);
+    } else {
+      alert('Please enter a search query.');
+    }
+  });
+
+  // Add a key press event listener to trigger the search when Enter key is pressed
+  searchInput.addEventListener('keypress', function (event) {
+    if (event.key === 'Enter') {
+      searchIcon.click(); // Trigger the search icon click event
+    }
+  });
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function () {
+    // Add a click event listener to movie images
+    $('.movie-image').click(function () {
+        // Get the movie ID from the data attribute
+        const movieId = $(this).data('movie-id');
+
+        // Send an AJAX request to add the movie to the watch history
+        $.ajax({
+            type: 'POST',
+            url: '{% url "add_to_watch_history" 0 %}'.replace(0, movieId),
+            data: {
+                'movie_id': movieId,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function (data) {
+                // You can optionally provide feedback to the user here
+                console.log('Movie added to watch history');
+            },
+            error: function () {
+                // Handle errors here
+                console.log('Error adding movie to watch history');
+            }
+        });
+    });
+});
+</script>
+
+
+
+
+{% endblock %}

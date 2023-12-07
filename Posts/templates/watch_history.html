@@ -1,0 +1,19 @@
+
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="container"><br>
+        <a href="{% url 'subscriber_list' %}" class="mx-5">
+            <button type="button" class="btn btn-primary" >Go Back</button>
+        </a>
+        <h1>Your Watch History</h1>
+        <ul>
+            {% for entry in watch_history %}
+                <li>
+                    <a href="{% url 'detail_path' entry.content.id %}">{{ entry.content.title }}</a>
+                    (Watched on {{ entry.timestamp }})
+                </li><br>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

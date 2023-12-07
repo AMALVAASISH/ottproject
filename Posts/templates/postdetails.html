@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+<style>
+    .custom-embed {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio, adjust as needed */
+        height: 0;
+        overflow: hidden;
+    }
+
+    .custom-embed iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+</style>
+
+  <div class="container mt-3">
+    <h1>Trailer: {{ post_details.title }}</h1>
+    {% if post_details.video_url %}
+        <div class="custom-embed">
+            <iframe src="{{ post_details.video_url }}" allowfullscreen></iframe>
+        </div>
+    {% endif %}
+    <h6>Duration: {{ post_details.duration }} minutes</h6>
+    <h6>Cast: {{ post_details.cast }}</h6>
+    <h6>Genre: {{ post_details.movie_genre }}</h6>
+    <h6>Category: {{ post_details.movie_media_genre }}</h6>
+    <h6>Release Date: {{ post_details.published_date }}</h6>
+    {% if is_content_creators %}
+        <a href="{% url 'creatorposts' %}" class="mx-5">
+            <button type="button" class="btn btn-primary" >Go Back</button>
+        </a>
+
+    {% else %}
+      <a href="{% url 'subscriber_list' %}" class="mx-5">
+        <button type="button" class="btn btn-primary" >Go Back</button>
+      </a>
+
+
+    {% endif %}
+    {% if request.user.id == post_details.author_id or request.user.is_superuser %}
+<!--        <a href="{% url 'creatorposts' %}" class="mx-5">-->
+<!--            <button type="button" class="btn btn-primary" >Go Back</button>-->
+<!--        </a>-->
+        <a href="{% url 'home' %}account/edit_post/{{ post_details.id }}" class="mx-5">
+            <button type="button" class="btn btn-primary">Modify</button>
+        </a>
+        <a href="{% url 'home' %}account/delete_post/{{ post_details.id }}" class="mx-5">
+            <button type="button" class="btn btn-primary">Delete</button>
+        </a>
+        <a href="{% url 'home' %}account/add_episode/{{ post_details.id }}" class="mx-5">
+            <button type="button" class="btn btn-success">Add Content</button>
+        </a>
+    {% endif %}
+<!--    {% if is_content_creators %}-->
+<!--    <a href="{% url 'home' %}account/add_episode/{{ post_details.id }}" class="mx-5">-->
+<!--        <button type="button" class="btn btn-success">Add Content</button>-->
+<!--    </a>-->
+<!--    {% endif %}-->
+<!--    {% if request.user.is_authenticated %}-->
+    {% if is_subscriber %}
+        <a href="{% url 'toggle_favorite' post_details.id %}" class="mx-5">
+            <button type="button" class="btn btn-primary">
+                {% if request.user in post_details.favorited_by.all %}
+                    Remove from Favorites
+                {% else %}
+                    Add to Favorites
+                {% endif %}
+            </button>
+        </a>
+    {% endif %}
+<!--    {% endif %}-->
+
+
+
+      <br><br>
+
+    {% if episode_details %}
+        {% for review in episode_details %}
+            {% if review.video_url %}
+                <div class="custom-embed">
+                    <iframe class="embed-responsive-item" src="{{ review.video_url }}" allowfullscreen></iframe>
+                </div>
+            {% endif %}
+            <h5>Title: {{ review.title }}</h5>
+            <h5>Description: {{ review.description }}</h5>
+          {% if request.user.id == post_details.author_id or request.user.is_superuser %}
+            <a href="{% url 'home' %}account/edit_episode/{{ review.id }}" class="mx-5">
+                <button type="button" class="btn btn-primary">Modify</button>
+            </a>
+            <a href="{% url 'home' %}account/delete_post/{{ review.id }}" class="mx-5">
+                <button type="button" class="btn btn-primary">Delete</button>
+            </a>
+          {% endif %}
+        {% endfor %}
+    {% endif %}
+      {% if episode_details %}
+
+      {% endif %}
+  </div>
+{% endblock %}
+
+
+
+
+
+
+
+

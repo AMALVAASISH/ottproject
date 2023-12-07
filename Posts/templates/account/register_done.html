@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %} USER REGISTRATION {% endblock %}
+{% block body %}
+    {% if is_subscriber %}
+        <div class="container mt-3">
+          <h3>Registration Done</h3>
+          <a href="{% url 'home' %}"><button type="button" class="btn btn-success">Go to homepage</button></a>
+          <a href="{% url 'login' %}"><button type="button" class="btn btn-success">Login</button></a>
+        </div>
+    {% endif %}
+{% endblock %}

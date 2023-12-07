@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} USER LOGIN {% endblock %}
+{% block body %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title text-center">Please Log In</h3>
+                        <form action="" method="post" novalidate>
+                            {% csrf_token %}
+                            {{ login_form | crispy }}
+
+                            <div class="text-center mt-3">
+                                <button type="submit" class="btn btn-success">Login</button>
+                                <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

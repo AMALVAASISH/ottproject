@@ -1,0 +1,111 @@
+
+
+{% extends 'base.html' %}
+
+{% block title %}
+    ENTERTAINIX
+{% endblock %}
+
+{% block body %}
+<style>
+    .background-container {
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        height: 700px; /* Adjust the height as needed */
+        text-align: center;
+        padding: 10px;
+        transition: background-image 1s ease-in-out;
+    }
+
+    .logo {
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 170px;
+        border: 2px solid white;
+        border-radius: 50%;
+        z-index: 1;
+    }
+
+    .top-right-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 1;
+    }
+
+    .main-content {
+        max-width: 600px; /* Adjust the max-width as needed */
+        margin: 200px auto; /* Center the content vertically */
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.7); /* Add semi-transparent black background */
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); /* Add a white shadow */
+
+        color: white;
+        text-align: center;
+        font-family: 'Algerian', cursive;
+    }
+
+    .typewriter-text {
+        font-size: 32px;
+        overflow: hidden;
+        white-space: nowrap;
+        border-right: 2px solid white;
+        animation: typing 3s steps(30, end), blink-caret 0.5s step-end infinite;
+    }
+
+    @keyframes typing {
+        from {
+            width: 0;
+        }
+        to {
+            width: 100%;
+        }
+    }
+
+    @keyframes blink-caret {
+        from, to {
+            border-right-color: transparent;
+        }
+        50% {
+            border-right-color: white;
+        }
+    }
+</style>
+
+<div class="background-container" id="background-container">
+    <img width="330" src="media/post/images/2.jpg" alt="Logo" class="logo">
+    <a href="register" class="btn btn-danger top-right-button">Sign Up</a>
+    <div class="container main-content">
+        <h1 class="typewriter-text">Welcome to the world of<br>Entertainix</h1>
+        <a href="login" class="btn btn-danger">Login</a>
+    </div>
+</div>
+
+<script>
+    // JavaScript code to change the background image every 2 seconds
+    const backgroundContainer = document.getElementById("background-container");
+    const images = [
+        'media/post/images/mallu.jpg',
+        'media/post/images/premam-365.jpg',
+        'media/post/images/ott_bg.jpg',
+        'media/post/images/bgott.jpg',
+        'media/post/images/Photo.jpg'
+
+    ];
+    let currentImageIndex = 0;
+
+    function changeBackgroundImage() {
+        backgroundContainer.style.backgroundImage = `url('${images[currentImageIndex]}')`;
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+    }
+
+    // Change the background image every 2 seconds
+    setInterval(changeBackgroundImage, 3000);
+</script>
+</body>
+</html>
+{% endblock %}
+
