@@ -39,7 +39,7 @@ def posts_list(request):
     return render(request, 'posts.html',{'search_term': search_term,'posts_list': posts_list,'is_subscriber': is_subscriber, 'is_content_creators': is_content_creators})
 
 def home(request):
-    return render(request, 'home.html', {'home': home})
+    return render(request, 'index.html', {'home': home})
 
 def adminpage(request):
     return render(request, 'adminpage.html',{'adminpage': adminpage})
