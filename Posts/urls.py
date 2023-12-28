@@ -5,7 +5,7 @@ from django.contrib.auth.views import LogoutView
 from .views import favorite_list_view, delete_episode
 from .views import edit_episode, add_to_watch_history, watch_history
 urlpatterns = [
-    path('', home,name='home'),
+    path('https://amalvaasish.github.io/ottproject.github.io/', home,name='home'),
     path('post/<int:passed_id>/', post_details_view,name='detail_path'),
     path('adminpage/', adminpage, name='adminpage'),
     path('creatorposts/',creatorposts,name='creatorposts'),
